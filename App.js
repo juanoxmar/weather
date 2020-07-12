@@ -12,14 +12,11 @@ const weatherData = async (val) => {
     ',US&appid=5d03735935aea079ff2b689474bf64f0';
   const response = await fetch(url, { mode: 'cors' });
   const data = await response.json();
-  console.log(JSON.stringify(data, null, 2));
   city.innerHTML = data.name;
   temp.innerHTML =
     ((parseFloat(data.main.temp) - 273.15) * 1.8 + 32).toFixed() + '&#176;';
-
   const upper = data.weather[0].description;
   forecast.innerHTML = upper[0].toUpperCase() + upper.slice(1);
-
   wind.innerHTML = data.wind.speed + ' mph winds';
 };
 
@@ -34,4 +31,3 @@ const err = (error) => {
 };
 
 weatherData(98101).catch(err);
-console.log(container);
